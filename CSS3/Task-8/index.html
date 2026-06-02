@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model & Layout Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .box-model {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .box-example {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border: 3px solid #3498db;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .box-example h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .eventCard {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .eventCard h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+
+        .eventCard p {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        /* Compact card - minimal spacing */
+        .eventCard.compact {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .eventCard.compact h3 {
+            margin: 0 0 5px 0;
+        }
+
+        /* Spacious card - generous spacing */
+        .eventCard.spacious {
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .border-solid {
+            border: 3px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+
+        .border-dashed {
+            border: 3px dashed #e74c3c;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #ecf0f1;
+        }
+
+        .border-dotted {
+            border: 3px dotted #f39c12;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #ecf0f1;
+        }
+
+        .border-double {
+            border: 5px double #27ae60;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #ecf0f1;
+        }
+
+        /* Different borders for each side */
+        .border-custom {
+            border-top: 5px solid #3498db;
+            border-right: 3px dashed #e74c3c;
+            border-bottom: 5px solid #27ae60;
+            border-left: 3px dotted #f39c12;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #ecf0f1;
+        }
+
+        input:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+
+        .outline-example {
+            outline: 2px solid #e74c3c;
+            outline-offset: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #fff9e6;
+        }
+
+        .visibility-hidden {
+            visibility: hidden;
+            background-color: #f8d7da;
+            padding: 15px;
+            border: 2px solid #dc3545;
+        }
+
+        .display-none {
+            display: none;
+            background-color: #d4edda;
+            padding: 15px;
+            border: 2px solid #28a745;
+        }
+
+        .display-visible {
+            background-color: #d4edda;
+            padding: 15px;
+            border: 2px solid #28a745;
+            display: block;
+        }
+
+        .margin-example {
+            background-color: #e8f4f8;
+            border: 2px solid #3498db;
+            padding: 10px;
+            margin: 30px 0;
+        }
+
+        .padding-example {
+            background-color: #e8f4f8;
+            border: 2px solid #3498db;
+            padding: 40px;
+            margin: 10px 0;
+        }
+
+        .shadow-subtle {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .shadow-medium {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .shadow-large {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .shadow-colored {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 5px 5px 0 #3498db;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+            border-color: #3498db;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Box Model & Layout Control</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Understanding the Box Model</h2>
+            <p>Every element in CSS consists of: Content → Padding → Border → Margin</p>
+            <div class="box-model">
+                <div class="box-example">
+                    <h3>Content</h3>
+                    <p>The actual content (text, images)</p>
+                </div>
+                <div class="box-example">
+                    <h3>Padding</h3>
+                    <p>Space inside the border</p>
+                </div>
+                <div class="box-example">
+                    <h3>Border</h3>
+                    <p>Outline around padding</p>
+                </div>
+                <div class="box-example">
+                    <h3>Margin</h3>
+                    <p>Space outside the border</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Event Card Examples</h2>
+            <p><strong>Compact Card:</strong> Minimal padding and margin</p>
+            <div class="eventCard compact">
+                <h3>Event 1</h3>
+                <p>Date: March 15, 2024</p>
+                <p>Location: Central Park</p>
+            </div>
+
+            <p><strong>Standard Card:</strong> Normal spacing</p>
+            <div class="eventCard">
+                <h3>Event 2</h3>
+                <p>Date: July 20, 2024</p>
+                <p>Location: Amphitheater</p>
+                <p>Attendees: 2,100 people</p>
+            </div>
+
+            <p><strong>Spacious Card:</strong> Generous spacing</p>
+            <div class="eventCard spacious">
+                <h3>Event 3</h3>
+                <p>Date: May 10, 2024</p>
+                <p>Location: Community Center</p>
+                <p>Special Note: Premium event with exclusive features</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Border Styles</h2>
+            <p><strong>Solid Border:</strong></p>
+            <div class="border-solid">Solid border style - most common</div>
+
+            <p><strong>Dashed Border:</strong></p>
+            <div class="border-dashed">Dashed border creates a broken line pattern</div>
+
+            <p><strong>Dotted Border:</strong></p>
+            <div class="border-dotted">Dotted border uses dots instead of lines</div>
+
+            <p><strong>Double Border:</strong></p>
+            <div class="border-double">Double border creates two parallel lines</div>
+
+            <p><strong>Custom Borders (different sides):</strong></p>
+            <div class="border-custom">Top: solid blue | Right: dashed red | Bottom: solid green | Left: dotted orange</div>
+        </section>
+
+        <section>
+            <h2>Outline vs Border</h2>
+            <p><strong>Border:</strong> Takes up space in the layout</p>
+            <p><strong>Outline:</strong> Does NOT take up space, drawn outside border</p>
+            <input type="text" placeholder="Click me to see outline on focus">
+            <p><strong>Example of outline effect (permanent):</strong></p>
+            <div class="outline-example">This element has a red outline with 5px offset</div>
+        </section>
+
+        <section>
+            <h2>Visibility vs Display</h2>
+            <p><strong>Note:</strong> These examples show the concepts but the actual elements are hidden/shown differently.</p>
+            
+            <p><strong>visibility: hidden</strong> - Element is hidden but still takes up space in layout</p>
+            <div class="visibility-hidden">This is hidden but takes up space</div>
+            <p>↑ There's space above this text where the hidden element was</p>
+
+            <p><strong>display: none</strong> - Element is removed from layout entirely</p>
+            <div class="display-none">This would be hidden and take no space</div>
+            <p>↑ No extra space since display: none removes it from flow</p>
+
+            <p><strong>display: block</strong> - Element is visible and visible in layout</p>
+            <div class="display-visible">This is visible and takes up space</div>
+        </section>
+
+        <section>
+            <h2>Margin vs Padding Comparison</h2>
+            <p><strong>Large Margin (30px):</strong> Creates space outside the element</p>
+            <div class="margin-example">
+                This box has 30px margin creating space OUTSIDE
+            </div>
+
+            <p><strong>Large Padding (40px):</strong> Creates space inside the element</p>
+            <div class="padding-example">
+                This box has 40px padding creating space INSIDE
+            </div>
+        </section>
+
+        <section>
+            <h2>Box Shadow Effects</h2>
+            <p><strong>Subtle Shadow:</strong> Minimal depth</p>
+            <div class="shadow-subtle">Subtle box shadow (1px 3px with 0.1 opacity)</div>
+
+            <p><strong>Medium Shadow:</strong> Noticeable depth</p>
+            <div class="shadow-medium">Medium box shadow (4px 6px with 0.2 opacity)</div>
+
+            <p><strong>Large Shadow:</strong> Dramatic depth</p>
+            <div class="shadow-large">Large box shadow (10px 20px with 0.3 opacity)</div>
+
+            <p><strong>Colored Shadow:</strong> Creative effect</p>
+            <div class="shadow-colored">Colored shadow (5px 5px blue)</div>
+        </section>
+
+        <section>
+            <h2>Form Elements with Focus States</h2>
+            <p><strong>Text Input:</strong> Click to see blue outline on focus</p>
+            <input type="text" placeholder="Click here to focus">
+
+            <p><strong>Textarea:</strong> Click to see blue outline on focus</p>
+            <textarea placeholder="Click here to focus"></textarea>
+
+            <p><strong>Styles applied:</strong></p>
+            <ul>
+                <li>border: 2px solid #bdc3c7</li>
+                <li>padding: 12px</li>
+                <li>On focus: outline: 3px solid #3498db</li>
+                <li>On focus: border-color: #3498db</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>DevTools Tips</h2>
+            <ul>
+                <li>Open Chrome DevTools (F12)</li>
+                <li>Right-click any element and select "Inspect"</li>
+                <li>In the Styles panel, see the box model diagram</li>
+                <li>Hover over the visual box model to highlight different parts</li>
+                <li>Click values to edit them in real-time</li>
+                <li>Test different margin/padding values interactively</li>
+                <li>See computed styles tab for final calculated values</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
