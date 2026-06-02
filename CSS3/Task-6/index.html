@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link and List Styling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        a:link {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:visited {
+            color: #9b59b6;
+        }
+
+        a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        a:focus {
+            outline: 2px solid #f39c12;
+            outline-offset: 2px;
+        }
+
+        .btn-primary:link,
+        .btn-primary:visited {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+        }
+
+        .btn-primary:active {
+            background-color: #1f618d;
+        }
+
+        .btn-secondary:link,
+        .btn-secondary:visited {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #229954;
+            text-decoration: none;
+        }
+
+        .btn-danger:link,
+        .btn-danger:visited {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            text-decoration: none;
+        }
+
+        .list-disc {
+            list-style-type: disc;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-disc li {
+            margin-bottom: 8px;
+        }
+
+        .list-circle {
+            list-style-type: circle;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-circle li {
+            margin-bottom: 8px;
+        }
+
+        .list-square {
+            list-style-type: square;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-square li {
+            margin-bottom: 8px;
+        }
+
+        .list-none {
+            list-style-type: none;
+            list-style-position: outside;
+            margin-left: 0;
+        }
+
+        .list-none li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+        }
+
+        .list-decimal {
+            list-style-type: decimal;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-decimal li {
+            margin-bottom: 8px;
+        }
+
+        .list-roman {
+            list-style-type: lower-roman;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-roman li {
+            margin-bottom: 8px;
+        }
+
+        .list-letters {
+            list-style-type: lower-alpha;
+            list-style-position: outside;
+            margin-left: 40px;
+        }
+
+        .list-letters li {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 0;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a:link,
+        nav a:visited {
+            display: block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            background-color: #34495e;
+        }
+
+        nav a:hover {
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:active {
+            background-color: #2c3e50;
+        }
+
+        .custom-list {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-list li:hover {
+            background-color: #d5dbdb;
+            border-left-color: #e74c3c;
+            padding-left: 25px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Link and List Styling</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Link Pseudo-classes</h2>
+            <p>Links have different states that can be styled individually:</p>
+            <p>
+                <a href="#">:link</a> - Unvisited link (Blue)<br>
+                <a href="https://google.com">:visited</a> - Visited link (Purple)<br>
+                <a href="#">Hover over link</a> - :hover state (Red with underline)<br>
+                <a href="#">Click a link</a> - :active state (Orange)
+            </p>
+        </section>
+
+        <section>
+            <h2>Button Styles with Links</h2>
+            <p>Links can be styled as buttons with different visual states:</p>
+            <div>
+                <a href="#" class="btn-primary">Primary Button</a>
+                <a href="#" class="btn-secondary">Secondary Button</a>
+                <a href="#" class="btn-danger">Danger Button</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Navigation Menu</h2>
+            <p>Horizontal navigation menu with custom styling:</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section>
+            <h2>List Style Types - Unordered Lists</h2>
+
+            <h3>Disc Bullets (default)</h3>
+            <ul class="list-disc">
+                <li>Community Events</li>
+                <li>Local Services</li>
+                <li>Member Resources</li>
+            </ul>
+
+            <h3>Circle Bullets</h3>
+            <ul class="list-circle">
+                <li>Spring Festival</li>
+                <li>Summer Concert</li>
+                <li>Fall Fair</li>
+            </ul>
+
+            <h3>Square Bullets</h3>
+            <ul class="list-square">
+                <li>Event Registration</li>
+                <li>Ticket Purchase</li>
+                <li>Member Login</li>
+            </ul>
+
+            <h3>No Bullets</h3>
+            <ul class="list-none">
+                <li>☆ Featured Event</li>
+                <li>☆ Popular Event</li>
+                <li>☆ Upcoming Event</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>List Style Types - Ordered Lists</h2>
+
+            <h3>Decimal (1, 2, 3...)</h3>
+            <ol class="list-decimal">
+                <li>Register for event</li>
+                <li>Pay registration fee</li>
+                <li>Receive confirmation email</li>
+                <li>Attend event</li>
+            </ol>
+
+            <h3>Roman Numerals (i, ii, iii...)</h3>
+            <ol class="list-roman">
+                <li>Check event details</li>
+                <li>View location map</li>
+                <li>Set calendar reminder</li>
+            </ol>
+
+            <h3>Letters (a, b, c...)</h3>
+            <ol class="list-letters">
+                <li>Find event</li>
+                <li>Read description</li>
+                <li>Register online</li>
+                <li>Receive ticket</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Custom Styled List</h2>
+            <p>A custom list with hover effects and custom styling:</p>
+            <ul class="custom-list">
+                <li>📌 Spring Festival - March 15</li>
+                <li>🎵 Summer Concert - July 20</li>
+                <li>🎨 Art Exhibition - May 10</li>
+                <li>🏃 Sports Day - June 5</li>
+                <li>📚 Workshop - April 12</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Best Practices</h2>
+            <ul class="list-disc">
+                <li>Always provide visual feedback for :hover state</li>
+                <li>Ensure :visited links are distinguishable</li>
+                <li>Use consistent colors across links</li>
+                <li>Remove default list styling when creating custom lists</li>
+                <li>Add proper spacing with margin and padding</li>
+                <li>Test keyboard navigation (Tab key)</li>
+                <li>Ensure sufficient color contrast for readability</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
