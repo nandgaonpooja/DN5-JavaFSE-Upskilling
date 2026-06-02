@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging with Chrome DevTools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        section p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #229954;
+        }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .console-output {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        
+        .console-line {
+            margin: 5px 0;
+            padding: 2px 0;
+        }
+        
+        .console-log {
+            color: #00ff00;
+        }
+        
+        .console-warn {
+            color: #ffff00;
+        }
+        
+        .console-error {
+            color: #ff0000;
+        }
+        
+        .console-info {
+            color: #00ccff;
+        }
+        
+        .element-box {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .element-box:hover {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+        }
+        
+        .element-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .element-box p {
+            color: #555;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+        
+        tr:hover {
+            background-color: #fff3cd;
+        }
+        
+        .inspector-tip {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            color: #0c5460;
+        }
+        
+        .code-snippet {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Debugging with Chrome DevTools</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. Console Logging (Open DevTools - F12 or Right Click > Inspect)</h2>
+            <p>Click the buttons below to see different types of console messages in Chrome DevTools Console tab:</p>
+            
+            <div class="button-group">
+                <button class="btn-primary" onclick="logMessage()">Log Message</button>
+                <button class="btn-success" onclick="warnMessage()">Warn Message</button>
+                <button class="btn-danger" onclick="errorMessage()">Error Message</button>
+                <button class="btn-primary" onclick="infoMessage()">Info Message</button>
+            </div>
+
+            <div class="inspector-tip">
+                <strong>Tip:</strong> Press F12 to open DevTools, then click the Console tab to see all logged messages
+            </div>
+
+            <div class="console-output" id="consoleOutput">
+                <div class="console-line console-info">&gt; Ready to receive console messages...</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Inspect Elements (Right Click on Elements > Inspect)</h2>
+            <p>Right-click on any element below and select "Inspect" to examine the HTML structure and CSS styles in DevTools Elements panel:</p>
+
+            <div class="element-box" id="inspectBox1">
+                <h3>Welcome Section</h3>
+                <p>This box has a border, padding, and hover effects. Inspect it to see the CSS applied.</p>
+            </div>
+
+            <div class="element-box" id="inspectBox2">
+                <h3>Event Information</h3>
+                <p>You can modify the styles in DevTools to experiment with different CSS properties live!</p>
+            </div>
+
+            <div class="inspector-tip">
+                <strong>Tip:</strong> In the Elements panel, you can edit HTML/CSS in real-time to preview changes. Use the Styles panel on the right to modify CSS.
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Debug Tables and Data</h2>
+            <p>View structured data in the console using console.table():</p>
+            
+            <button class="btn-primary" onclick="logTable()">Display Data Table in Console</button>
+
+            <div class="inspector-tip">
+                <strong>Tip:</strong> Check the Console tab to see a formatted table with Event data
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring Festival</td>
+                        <td>March 15, 2024</td>
+                        <td>Central Park</td>
+                        <td>$15</td>
+                    </tr>
+                    <tr>
+                        <td>Summer Concert</td>
+                        <td>July 20, 2024</td>
+                        <td>Amphitheater</td>
+                        <td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Art Exhibition</td>
+                        <td>May 10, 2024</td>
+                        <td>Community Center</td>
+                        <td>$12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>4. Breakpoint Debugging (F12 > Sources Tab)</h2>
+            <p>Click the button below and set a breakpoint in DevTools to step through the code:</p>
+            
+            <button class="btn-primary" onclick="debugFunction()">Trigger Function for Debugging</button>
+
+            <div class="inspector-tip">
+                <strong>To set a breakpoint:</strong>
+                <ol>
+                    <li>Open DevTools (F12)</li>
+                    <li>Go to Sources tab</li>
+                    <li>Find this file</li>
+                    <li>Click on the line number to set a breakpoint</li>
+                    <li>Click the button above and step through the code</li>
+                </ol>
+            </div>
+
+            <div class="code-snippet">
+function debugFunction() {
+    let eventName = "Community Event";
+    let attendees = 50;
+    let totalFee = attendees * 15;
+    console.log("Event:", eventName);
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Network Debugging (F12 > Network Tab)</h2>
+            <p>Open Network tab and perform actions to see network requests:</p>
+            
+            <button class="btn-primary" onclick="makeNetworkRequest()">Simulate API Request</button>
+
+            <div class="inspector-tip">
+                <strong>Tip:</strong> Open DevTools Network tab before clicking the button to see the request details (method, status, headers, response, timing)
+            </div>
+        </section>
+
+        <section>
+            <h2>6. Performance Monitoring (F12 > Performance Tab)</h2>
+            <p>The Performance tab helps you analyze page load time and runtime performance:</p>
+            
+            <button class="btn-primary" onclick="heavyComputation()">Run Performance Test</button>
+
+            <div class="inspector-tip">
+                <strong>To use Performance tab:</strong>
+                <ol>
+                    <li>Open DevTools and go to Performance tab</li>
+                    <li>Click the Record button (red circle)</li>
+                    <li>Click "Run Performance Test" above</li>
+                    <li>Click Stop recording</li>
+                    <li>Analyze the timeline</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>7. Check Responsive Design (F12 > Device Toolbar)</h2>
+            <p>Use Chrome DevTools to test responsive design:</p>
+            
+            <div class="inspector-tip">
+                <strong>Keyboard Shortcut:</strong> Ctrl+Shift+M (or Cmd+Shift+M on Mac) to toggle Device Toolbar
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                <div style="background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center;">
+                    <strong>Mobile (375px)</strong>
+                </div>
+                <div style="background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center;">
+                    <strong>Tablet (768px)</strong>
+                </div>
+                <div style="background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center; grid-column: 1/3;">
+                    <strong>Desktop (1024px+)</strong>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Chrome DevTools Shortcuts</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Windows/Linux</th>
+                        <th>Mac</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Open DevTools</td>
+                        <td>F12 or Ctrl+Shift+I</td>
+                        <td>Cmd+Option+I</td>
+                    </tr>
+                    <tr>
+                        <td>Inspect Element</td>
+                        <td>Ctrl+Shift+C</td>
+                        <td>Cmd+Shift+C</td>
+                    </tr>
+                    <tr>
+                        <td>Toggle Device Mode</td>
+                        <td>Ctrl+Shift+M</td>
+                        <td>Cmd+Shift+M</td>
+                    </tr>
+                    <tr>
+                        <td>Open Console</td>
+                        <td>Ctrl+Shift+J</td>
+                        <td>Cmd+Option+J</td>
+                    </tr>
+                    <tr>
+                        <td>Go to Sources</td>
+                        <td>Ctrl+Shift+P</td>
+                        <td>Cmd+Shift+P</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function logMessage() {
+            console.log('✓ This is a regular log message from the Event Portal');
+            addToConsoleOutput('✓ Log message sent', 'console-log');
+        }
+
+        function warnMessage() {
+            console.warn('⚠ This is a warning message - check your form validation');
+            addToConsoleOutput('⚠ Warning message sent', 'console-warn');
+        }
+
+        function errorMessage() {
+            console.error('✗ This is an error message - something went wrong with event registration');
+            addToConsoleOutput('✗ Error message sent', 'console-error');
+        }
+
+        function infoMessage() {
+            console.info('ℹ Event registration form loaded successfully');
+            addToConsoleOutput('ℹ Info message sent', 'console-info');
+        }
+
+        function logTable() {
+            const events = [
+                { name: 'Spring Festival', date: '2024-03-15', location: 'Central Park', attendees: 150 },
+                { name: 'Summer Concert', date: '2024-07-20', location: 'Amphitheater', attendees: 300 },
+                { name: 'Art Exhibition', date: '2024-05-10', location: 'Community Center', attendees: 80 },
+                { name: 'Workshop', date: '2024-04-05', location: 'Library', attendees: 40 }
+            ];
+            
+            console.table(events);
+            console.log('Event data displayed in table format in the Console');
+            addToConsoleOutput('✓ Data table logged to console', 'console-log');
+        }
+
+        function debugFunction() {
+            console.log('=== Debugging Function Started ===');
+            let eventName = "Community Event Portal";
+            console.log('Event Name:', eventName);
+            
+            let attendees = 250;
+            console.log('Number of Attendees:', attendees);
+            
+            let ticketPrice = 15;
+            let totalFee = attendees * ticketPrice;
+            console.log('Total Revenue:', '$' + totalFee);
+            
+            console.log('=== Debugging Function Completed ===');
+            addToConsoleOutput('✓ Debug function executed - check Console tab', 'console-log');
+        }
+
+        function makeNetworkRequest() {
+            fetch('https://api.github.com/zen')
+                .then(response => response.text())
+                .then(data => {
+                    console.log('API Response:', data);
+                    addToConsoleOutput('✓ Network request completed - check Network tab', 'console-log');
+                })
+                .catch(error => {
+                    console.error('Network request failed:', error);
+                    addToConsoleOutput('✗ Network request failed', 'console-error');
+                });
+        }
+
+        function heavyComputation() {
+            console.time('HeavyComputation');
+            
+            let sum = 0;
+            for (let i = 0; i < 1000000000; i++) {
+                sum += i;
+            }
+            
+            console.timeEnd('HeavyComputation');
+            console.log('Computation result:', sum);
+            addToConsoleOutput('✓ Performance test completed - check Performance/Console tab', 'console-log');
+        }
+
+        function addToConsoleOutput(message, className) {
+            const output = document.getElementById('consoleOutput');
+            const line = document.createElement('div');
+            line.className = `console-line ${className}`;
+            line.textContent = '> ' + message;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        console.log('%c🎉 Welcome to Event Portal DevTools Demo!', 'color: #3498db; font-size: 16px; font-weight: bold;');
+        console.log('%cTry these actions to learn about DevTools:', 'color: #27ae60; font-size: 12px;');
+        console.log('1. Click buttons to see console messages');
+        console.log('2. Right-click elements and select "Inspect"');
+        console.log('3. Use Sources tab to set breakpoints');
+        console.log('4. Check Network tab for API calls');
+        console.log('5. Use Performance tab for timing analysis');
+    </script>
+</body>
+</html>
