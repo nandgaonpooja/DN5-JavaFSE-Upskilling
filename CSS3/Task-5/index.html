@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography: Fonts and Text</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        /* Font-family examples */
+        .serif-font {
+            font-family: Georgia, serif;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .sans-serif-font {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.05em;
+            font-weight: bold;
+        }
+
+        .monospace-font {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.95em;
+        }
+
+        /* Font-size variations */
+        .text-xs {
+            font-size: 0.75em;
+            color: #999;
+        }
+
+        .text-sm {
+            font-size: 0.9em;
+        }
+
+        .text-base {
+            font-size: 1em;
+        }
+
+        .text-lg {
+            font-size: 1.25em;
+        }
+
+        .text-xl {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .text-2xl {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Font-weight variations */
+        .font-light {
+            font-weight: 300;
+        }
+
+        .font-normal {
+            font-weight: 400;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-black {
+            font-weight: 900;
+        }
+
+        /* Text decoration */
+        .text-uppercase {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .text-lowercase {
+            text-transform: lowercase;
+        }
+
+        .text-capitalize {
+            text-transform: capitalize;
+        }
+
+        /* Text alignment */
+        .text-left {
+            text-align: left;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        /* Line height variations */
+        .line-tight {
+            line-height: 1.2;
+        }
+
+        .line-normal {
+            line-height: 1.6;
+        }
+
+        .line-loose {
+            line-height: 2;
+        }
+
+        /* Letter spacing */
+        .letter-normal {
+            letter-spacing: 0;
+        }
+
+        .letter-wide {
+            letter-spacing: 2px;
+        }
+
+        .letter-wider {
+            letter-spacing: 4px;
+        }
+
+        /* Word spacing */
+        .word-normal {
+            word-spacing: 0;
+        }
+
+        .word-wide {
+            word-spacing: 5px;
+        }
+
+        /* Text shadow */
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .text-shadow-large {
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            font-size: 1.5em;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background-color: #fff9e6;
+            padding: 15px;
+            border-left: 4px solid #f39c12;
+            margin: 15px 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Typography: Fonts and Text</h1>
+        <p>Master the art of web typography with CSS</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Google Fonts Import</h2>
+            <p>This page uses Google Fonts for enhanced typography. The fonts are imported using a link tag in the head.</p>
+            <div class="highlight-box">
+                <p><strong>Fonts used:</strong></p>
+                <p>1. <span style="font-family: 'Playfair Display', serif;">Playfair Display</span> - Elegant serif font for headings</p>
+                <p>2. <span style="font-family: 'Roboto', sans-serif;">Roboto</span> - Modern sans-serif for body text</p>
+                <p>3. <span style="font-family: 'Open Sans', sans-serif;">Open Sans</span> - Clean sans-serif for UI elements</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Font Family</h2>
+            <h3>Serif Font</h3>
+            <p class="serif-font">This paragraph uses a serif font like Georgia. Serifs are small decorative lines at the end of letters, commonly used in print media.</p>
+
+            <h3>Sans-Serif Font</h3>
+            <p class="sans-serif-font">This paragraph uses a sans-serif font without the decorative lines. Better readability on screens.</p>
+
+            <h3>Monospace Font</h3>
+            <p>This text uses <span class="monospace-font">monospace font</span> for code display. All characters have the same width.</p>
+        </section>
+
+        <section>
+            <h2>Font Size</h2>
+            <p class="text-xs">Extra Small: 0.75em</p>
+            <p class="text-sm">Small: 0.9em</p>
+            <p class="text-base">Base/Normal: 1em</p>
+            <p class="text-lg">Large: 1.25em</p>
+            <p class="text-xl">Extra Large: 1.5em</p>
+            <p class="text-2xl">2XL: 2em</p>
+        </section>
+
+        <section>
+            <h2>Font Weight</h2>
+            <p class="font-light">Light (300): This text has a thin appearance</p>
+            <p class="font-normal">Normal (400): Standard font weight for body text</p>
+            <p class="font-semibold">Semi-Bold (600): Slightly heavier than normal</p>
+            <p class="font-bold">Bold (700): Strong emphasis for important content</p>
+            <p class="font-black">Black (900): Maximum weight for dramatic effect</p>
+        </section>
+
+        <section>
+            <h2>Text Transform</h2>
+            <p class="text-uppercase">this text is transformed to uppercase</p>
+            <p class="text-lowercase">THIS TEXT IS TRANSFORMED TO LOWERCASE</p>
+            <p class="text-capitalize">this text has each word capitalized</p>
+        </section>
+
+        <section>
+            <h2>Text Alignment</h2>
+            <p class="text-left">Left aligned text starts from the left margin</p>
+            <p class="text-center">Center aligned text is positioned in the middle</p>
+            <p class="text-right">Right aligned text aligns to the right margin</p>
+            <p class="text-justify">Justified text spreads evenly across the entire width of the container from left to right margin, creating a clean block appearance with even distribution of words.</p>
+        </section>
+
+        <section>
+            <h2>Line Height</h2>
+            <p class="line-tight">Tight line height (1.2): This paragraph has condensed spacing between lines, making it feel compact and intense. Use this sparingly for special effects.</p>
+            <p class="line-normal">Normal line height (1.6): This is the standard line height for body text. It provides comfortable reading and good spacing between lines of text for better comprehension.</p>
+            <p class="line-loose">Loose line height (2): This paragraph has increased spacing between lines, creating an airy and spacious feel. Good for accessibility and readability.</p>
+        </section>
+
+        <section>
+            <h2>Letter and Word Spacing</h2>
+            <p class="letter-normal">Normal letter spacing with standard character spacing</p>
+            <p class="letter-wide">Letter spacing increased to 2px for dramatic effect</p>
+            <p class="letter-wider">L E T T E R  S P A C I N G  A T  4 P X</p>
+            <p class="word-wide">Word spacing increased creating gaps between individual words</p>
+        </section>
+
+        <section>
+            <h2>Text Shadow</h2>
+            <p class="text-shadow">This text has a subtle shadow effect for depth</p>
+            <p class="text-shadow-large">This text has a larger shadow for dramatic visual effect</p>
+        </section>
+
+        <section>
+            <h2>Font Styles</h2>
+            <p><em>Italic text</em> - Slanted text for emphasis</p>
+            <p><strong>Bold text</strong> - Heavy weight for importance</p>
+            <p><u>Underlined text</u> - Classic emphasis method</p>
+            <p><s>Strikethrough text</s> - Text with line through it</p>
+            <p><small>Small text</small> - Smaller than normal size</p>
+            <p><sub>Subscript text</sub> - H<sub>2</sub>O chemical formula</p>
+            <p><sup>Superscript text</sup> - E=mc<sup>2</sup> physics formula</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
