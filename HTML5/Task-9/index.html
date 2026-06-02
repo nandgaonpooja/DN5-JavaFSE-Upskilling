@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation for Event Mapping</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        section {
+            margin-bottom: 30px;
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.05em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result-box {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #3498db;
+            display: none;
+        }
+        
+        .result-box.show {
+            display: block;
+        }
+        
+        .result-box.success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        
+        .result-box.error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .result-box.warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+        
+        .location-info {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 2px solid #3498db;
+        }
+        
+        .location-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .info-value {
+            color: #3498db;
+            font-family: monospace;
+        }
+        
+        .nearby-events {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .nearby-events h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .event-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .event-item strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        
+        .event-distance {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .info-text {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Find Nearby Community Events</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Your Location</h2>
+            <button id="geoButton" onclick="findNearbyEvents()">
+                📍 Find Nearby Events
+            </button>
+
+            <div class="result-box" id="resultBox">
+                <div id="resultContent"></div>
+            </div>
+
+            <div class="info-text">
+                <strong>Note:</strong> This will request permission to access your location. Your browser may ask for confirmation. You can manage location permissions in your browser settings.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const geoButton = document.getElementById('geoButton');
+        const resultBox = document.getElementById('resultBox');
+        const resultContent = document.getElementById('resultContent');
+
+        const sampleEvents = [
+            { name: 'Spring Festival', lat: 40.7580, lon: -73.9855, type: 'Festival' },
+            { name: 'Summer Concert', lat: 40.7489, lon: -73.9680, type: 'Concert' },
+            { name: 'Community Cleanup', lat: 40.7614, lon: -73.9776, type: 'Cleanup' },
+            { name: 'Art Exhibition', lat: 40.7505, lon: -73.9972, type: 'Art' },
+            { name: 'Sports Day', lat: 40.7549, lon: -73.9840, type: 'Sports' }
+        ];
+
+        function findNearbyEvents() {
+            geoButton.disabled = true;
+            resultBox.classList.remove('success', 'error', 'warning');
+            
+            resultContent.innerHTML = '<span class="loading"></span>Fetching your location...';
+            resultBox.classList.add('show');
+
+            if (!navigator.geolocation) {
+                resultContent.innerHTML = 'Geolocation is not supported by your browser.';
+                resultBox.classList.add('error');
+                geoButton.disabled = false;
+                return;
+            }
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    displayLocation(position.coords);
+                    geoButton.disabled = false;
+                },
+                function(error) {
+                    handleLocationError(error);
+                    geoButton.disabled = false;
+                },
+                options
+            );
+        }
+
+        function displayLocation(coords) {
+            const latitude = coords.latitude;
+            const longitude = coords.longitude;
+            const accuracy = coords.accuracy;
+
+            let html = '<div class="location-info">';
+            html += '<h4>Your Location</h4>';
+            html += `<div class="info-row">
+                        <span class="info-label">Latitude:</span>
+                        <span class="info-value">${latitude.toFixed(6)}</span>
+                    </div>`;
+            html += `<div class="info-row">
+                        <span class="info-label">Longitude:</span>
+                        <span class="info-value">${longitude.toFixed(6)}</span>
+                    </div>`;
+            html += `<div class="info-row">
+                        <span class="info-label">Accuracy:</span>
+                        <span class="info-value">±${accuracy.toFixed(2)} meters</span>
+                    </div>`;
+            html += '</div>';
+
+            const nearbyEvents = calculateNearbyEvents(latitude, longitude);
+            
+            html += '<div class="nearby-events">';
+            html += '<h4>Nearby Events (sorted by distance):</h4>';
+            
+            if (nearbyEvents.length > 0) {
+                nearbyEvents.forEach(event => {
+                    html += `<div class="event-item">
+                                <strong>${event.name}</strong>
+                                <span>${event.type}</span><br>
+                                <span class="event-distance">Distance: ${event.distance.toFixed(2)} km</span>
+                            </div>`;
+                });
+            } else {
+                html += '<p>No nearby events found at this moment.</p>';
+            }
+            
+            html += '</div>';
+
+            resultContent.innerHTML = html;
+            resultBox.classList.add('success');
+            resultBox.classList.remove('show');
+            resultBox.classList.add('show');
+        }
+
+        function calculateNearbyEvents(userLat, userLon) {
+            const radiusKm = 50;
+            
+            const eventDistances = sampleEvents.map(event => {
+                const distance = calculateDistance(userLat, userLon, event.lat, event.lon);
+                return {
+                    ...event,
+                    distance: distance
+                };
+            });
+
+            return eventDistances
+                .filter(event => event.distance <= radiusKm)
+                .sort((a, b) => a.distance - b.distance);
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function handleLocationError(error) {
+            let errorMessage = '';
+            
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = 'Permission denied. Please enable location access in your browser settings and try again.';
+                    resultBox.classList.add('warning');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = 'Location information is unavailable.';
+                    resultBox.classList.add('error');
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = 'The request to get user location timed out. Please try again.';
+                    resultBox.classList.add('warning');
+                    break;
+                default:
+                    errorMessage = 'An unknown error occurred while retrieving location.';
+                    resultBox.classList.add('error');
+            }
+            
+            resultContent.innerHTML = errorMessage;
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+</html>
