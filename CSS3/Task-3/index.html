@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        #mainHeader {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #mainHeader h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .eventCard {
+            background-color: #ecf0f1;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .eventCard:hover {
+            transform: translateX(10px);
+            border-left-color: #e74c3c;
+        }
+
+        .eventCard h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .eventCard h3,
+        .eventCard p {
+            margin: 0;
+        }
+
+        .eventCard h3 {
+            margin-bottom: 8px;
+        }
+
+        section > h2 {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #9b59b6;
+        }
+
+        a:active {
+            color: #e67e22;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Selectors Playground</h1>
+    </header>
+
+    <main>
+        <div id="mainHeader">
+            <h1>Master CSS Selectors</h1>
+            <p>Learn how to select and style HTML elements</p>
+        </div>
+
+        <section>
+            <h2>1. Universal Selector (*)</h2>
+            <p>The universal selector targets all elements on the page. Used for resetting default browser styles.</p>
+            <p><strong>Applied:</strong> Margin and padding reset for all elements</p>
+        </section>
+
+        <section>
+            <h2>2. Element Selectors</h2>
+            <p>Element selectors target all instances of a specific HTML tag.</p>
+            <p><strong>Applied:</strong> All paragraphs have color #555 and line-height 1.6</p>
+        </section>
+
+        <section>
+            <h2>3. ID Selectors (#)</h2>
+            <p>ID selectors target a unique element by its ID attribute. Each ID should be unique on a page.</p>
+            <p><strong>Applied:</strong> #mainHeader has gradient background and custom styling</p>
+        </section>
+
+        <section>
+            <h2>4. Class Selectors (.)</h2>
+            <p>Class selectors target elements with a specific class. Classes can be reused across multiple elements.</p>
+
+            <div class="eventCard">
+                <h3>Spring Festival</h3>
+                <p>March 15, 2024 | Central Park | Community Event</p>
+            </div>
+
+            <div class="eventCard">
+                <h3>Summer Concert</h3>
+                <p>July 20, 2024 | Amphitheater | Music Event</p>
+            </div>
+
+            <div class="eventCard">
+                <h3>Art Exhibition</h3>
+                <p>May 10, 2024 | Community Center | Arts Event</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Grouping Selectors (,)</h2>
+            <p>Group multiple selectors to apply the same styles. Reduces code duplication.</p>
+            <p><strong>Applied:</strong> .eventCard h3 and .eventCard p have margin: 0</p>
+        </section>
+
+        <section>
+            <h2>6. Attribute Selectors</h2>
+            <p>Target elements based on their attributes.</p>
+            <input type="text" placeholder="This input uses [type=text] selector">
+        </section>
+
+        <section>
+            <h2>7. Pseudo-class Selectors</h2>
+            <p>Target elements in specific states.</p>
+            <ul>
+                <li><a href="#">Hover me to see :hover state</a></li>
+                <li><a href="https://example.com">Visited link shows :visited state</a></li>
+                <li><a href="#">Active link shows :active state</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>8. Child Selectors (&gt;)</h2>
+            <p>Target direct children of an element. All h2 elements that are direct children of section get bold weight.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
