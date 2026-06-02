@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving User Preferences</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        section {
+            margin-bottom: 30px;
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .btn-save {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background-color: #229954;
+        }
+        
+        .btn-clear {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-view {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-view:hover {
+            background-color: #2980b9;
+        }
+        
+        .info-box {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            margin-top: 15px;
+        }
+        
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+        
+        .status-message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+        
+        .status-message.show {
+            display: block;
+        }
+        
+        .status-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-message.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .status-message.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .storage-display {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 0.9em;
+            border: 1px solid #ddd;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Event Preferences Manager</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Select Your Preferred Event Type</h2>
+            
+            <div class="form-group">
+                <label for="eventPreference">Favorite Event Type:</label>
+                <select id="eventPreference" name="eventPreference">
+                    <option value="">Choose your preference</option>
+                    <option value="festivals">Festivals</option>
+                    <option value="concerts">Concerts</option>
+                    <option value="workshops">Workshops</option>
+                    <option value="sports">Sports Events</option>
+                    <option value="art">Art Exhibitions</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-save" onclick="savePreference()">Save Preference</button>
+                <button class="btn-view" onclick="viewStorage()">View Storage</button>
+                <button class="btn-clear" onclick="clearAllStorage()">Clear All Preferences</button>
+            </div>
+
+            <div class="status-message" id="statusMessage"></div>
+        </section>
+
+        <section>
+            <h2>Storage Information</h2>
+            
+            <div class="info-box">
+                <h3>localStorage</h3>
+                <p>Persistent storage that survives browser closure</p>
+                <p>Used for: Long-term user preferences</p>
+            </div>
+
+            <div class="info-box">
+                <h3>sessionStorage</h3>
+                <p>Temporary storage cleared when browser tab closes</p>
+                <p>Used for: Temporary session data</p>
+            </div>
+
+            <div class="storage-display" id="storageDisplay"></div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <div class="info-box">
+                <p>1. Select your preferred event type from the dropdown</p>
+                <p>2. Click "Save Preference" to store it locally</p>
+                <p>3. Close and reopen the browser - your preference is remembered!</p>
+                <p>4. Use "Clear All Preferences" to reset everything</p>
+                <p>5. Click "View Storage" to see what's stored</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const eventPreferenceSelect = document.getElementById('eventPreference');
+        const statusMessage = document.getElementById('statusMessage');
+        const storageDisplay = document.getElementById('storageDisplay');
+
+        window.addEventListener('load', function() {
+            loadPreference();
+            updateStorageDisplay();
+        });
+
+        function loadPreference() {
+            const savedPreference = localStorage.getItem('eventPreference');
+            if (savedPreference) {
+                eventPreferenceSelect.value = savedPreference;
+                showMessage(`Preference loaded: ${savedPreference}`, 'info');
+            } else {
+                showMessage('No preferences found. Save your first preference!', 'info');
+            }
+        }
+
+        function savePreference() {
+            const selectedValue = eventPreferenceSelect.value;
+            
+            if (!selectedValue) {
+                showMessage('Please select an event type first!', 'warning');
+                return;
+            }
+
+            localStorage.setItem('eventPreference', selectedValue);
+            sessionStorage.setItem('lastSelectedEvent', selectedValue);
+            
+            showMessage(`✓ Preference saved: ${selectedValue}`, 'success');
+            updateStorageDisplay();
+        }
+
+        function clearAllStorage() {
+            if (confirm('Are you sure you want to clear all preferences?')) {
+                localStorage.removeItem('eventPreference');
+                sessionStorage.clear();
+                eventPreferenceSelect.value = '';
+                
+                showMessage('✓ All preferences cleared!', 'success');
+                updateStorageDisplay();
+            }
+        }
+
+        function viewStorage() {
+            updateStorageDisplay();
+            showMessage('Storage contents displayed below', 'info');
+        }
+
+        function updateStorageDisplay() {
+            let content = '<strong>localStorage:</strong><br>';
+            
+            if (localStorage.length === 0) {
+                content += 'Empty<br><br>';
+            } else {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    const value = localStorage.getItem(key);
+                    content += `${key}: "${value}"<br>`;
+                }
+                content += '<br>';
+            }
+
+            content += '<strong>sessionStorage:</strong><br>';
+            
+            if (sessionStorage.length === 0) {
+                content += 'Empty';
+            } else {
+                for (let i = 0; i < sessionStorage.length; i++) {
+                    const key = sessionStorage.key(i);
+                    const value = sessionStorage.getItem(key);
+                    content += `${key}: "${value}"<br>`;
+                }
+            }
+
+            storageDisplay.innerHTML = content;
+        }
+
+        function showMessage(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message show ${type}`;
+            
+            setTimeout(() => {
+                statusMessage.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
