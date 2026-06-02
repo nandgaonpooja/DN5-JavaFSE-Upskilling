@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug and Test with DevTools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+            color: #155724;
+        }
+
+        .warning {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+            color: #721c24;
+        }
+
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        .button-demo {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+            font-size: 1em;
+        }
+
+        .button-demo:hover {
+            background-color: #2980b9;
+        }
+
+        .button-demo:active {
+            background-color: #1f618d;
+            transform: scale(0.98);
+        }
+
+        .inspect-me {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 10px 0;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .inspect-me:hover {
+            background-color: #fff3cd;
+            border-color: #f39c12;
+        }
+
+        .layout-test {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .layout-item {
+            background-color: #d4edda;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid #28a745;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: 3px solid #3498db;
+            border-color: #3498db;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Debug and Test with DevTools</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. Inspect Element Basics</h2>
+            <p>Right-click on any element and select "Inspect" to open Chrome DevTools and examine the HTML/CSS.</p>
+            
+            <div class="inspect-me">
+                Right-click me and select "Inspect" to see the HTML structure
+            </div>
+
+            <p>In the Elements panel, you can:</p>
+            <ul>
+                <li>View the HTML hierarchy</li>
+                <li>See applied CSS styles</li>
+                <li>Inspect computed styles</li>
+                <li>Modify HTML/CSS in real-time</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. View Applied CSS</h2>
+            <p>When you inspect an element, the Styles panel shows all CSS affecting it.</p>
+            
+            <div class="note">
+                <strong>Inspector Panel Features:</strong><br>
+                - View inline styles<br>
+                - See stylesheet sources<br>
+                - Check specificity<br>
+                - See overridden rules (struck through)<br>
+                - Toggle rules on/off<br>
+            </div>
+
+            <div class="inspect-me">
+                Inspect this box to see all CSS rules affecting it
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Edit Styles in Real-Time</h2>
+            <p>Click on any CSS property in DevTools to edit it instantly and see changes live.</p>
+            
+            <div class="tip">
+                <strong>Try this:</strong><br>
+                1. Right-click on the box below<br>
+                2. Select "Inspect"<br>
+                3. In the Styles panel, find "background-color: #ecf0f1"<br>
+                4. Click on the color value and change it<br>
+                5. Watch the box change color in real-time<br>
+            </div>
+
+            <div class="inspect-me">
+                Edit my background-color in DevTools
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Console Tab</h2>
+            <p>The Console is where JavaScript errors appear and where you can run commands.</p>
+
+            <div class="note">
+                Common Console shortcuts:<br>
+                - document.querySelector() - Find elements<br>
+                - console.log() - Print messages<br>
+                - $0 - References selected element<br>
+                - $1, $2, $3 - Previous selections<br>
+            </div>
+
+            <button class="button-demo" onclick="testConsole()">Click to Log to Console</button>
+
+            <div class="code-block">
+Open the Console tab (F12 > Console) and click the button above
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Elements Panel - Box Model</h2>
+            <p>The Elements panel shows the box model diagram for any element.</p>
+
+            <div class="layout-test">
+                <div class="layout-item">Item 1</div>
+                <div class="layout-item">Item 2</div>
+                <div class="layout-item">Item 3</div>
+            </div>
+
+            <div class="tip">
+                <strong>Inspect the boxes above to see:</strong><br>
+                - Content area (blue)<br>
+                - Padding (green)<br>
+                - Border (yellow)<br>
+                - Margin (orange)<br>
+                Hover over values to highlight on page
+            </div>
+        </section>
+
+        <section>
+            <h2>6. Sources Tab for Debugging</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Purpose</th>
+                        <th>How to Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Breakpoints</td>
+                        <td>Pause execution at a line</td>
+                        <td>Click line number to set breakpoint</td>
+                    </tr>
+                    <tr>
+                        <td>Step Over</td>
+                        <td>Execute one line</td>
+                        <td>Press F10 or click Step Over</td>
+                    </tr>
+                    <tr>
+                        <td>Step Into</td>
+                        <td>Enter function calls</td>
+                        <td>Press F11 or click Step Into</td>
+                    </tr>
+                    <tr>
+                        <td>Step Out</td>
+                        <td>Exit function</td>
+                        <td>Shift+F11 or click Step Out</td>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>View variable values</td>
+                        <td>Check Scope panel during debug</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>7. Network Tab</h2>
+            <p>Monitor all network requests made by the page.</p>
+
+            <div class="note">
+                <strong>Network Tab shows:</strong><br>
+                - Request method (GET, POST, etc.)<br>
+                - Status codes (200, 404, etc.)<br>
+                - File size and transfer size<br>
+                - Time taken<br>
+                - Response headers and body<br>
+            </div>
+
+            <button class="button-demo" onclick="testNetwork()">Click to Trigger Network Request</button>
+        </section>
+
+        <section>
+            <h2>8. Performance Tab</h2>
+            <p>Analyze page load time and runtime performance.</p>
+
+            <div class="tip">
+                <strong>Performance Tab helps:</strong><br>
+                1. Record page interactions<br>
+                2. Identify slow operations<br>
+                3. Optimize rendering performance<br>
+                4. Find memory leaks<br>
+                5. Improve user experience<br>
+            </div>
+
+            <button class="button-demo" onclick="performanceTest()">Run Performance Test</button>
+        </section>
+
+        <section>
+            <h2>9. Device Mode (Responsive Testing)</h2>
+            <p>Test your site on different devices and screen sizes.</p>
+
+            <div class="tip">
+                <strong>How to Open Device Mode:</strong><br>
+                - Keyboard: Ctrl+Shift+M (Windows) or Cmd+Shift+M (Mac)<br>
+                - Menu: DevTools > More tools > Device Mode<br>
+            </div>
+
+            <div class="warning">
+                <strong>In Device Mode:</strong><br>
+                - Select preset devices (iPhone, iPad, etc.)<br>
+                - Test different screen sizes<br>
+                - Toggle orientation (portrait/landscape)<br>
+                - Simulate network throttling<br>
+                - Test touch events<br>
+            </div>
+        </section>
+
+        <section>
+            <h2>10. DevTools Keyboard Shortcuts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Windows/Linux</th>
+                        <th>Mac</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Open DevTools</td>
+                        <td>F12</td>
+                        <td>Cmd+Option+I</td>
+                    </tr>
+                    <tr>
+                        <td>Inspect Element</td>
+                        <td>Ctrl+Shift+C</td>
+                        <td>Cmd+Shift+C</td>
+                    </tr>
+                    <tr>
+                        <td>Toggle Device Mode</td>
+                        <td>Ctrl+Shift+M</td>
+                        <td>Cmd+Shift+M</td>
+                    </tr>
+                    <tr>
+                        <td>Open Console</td>
+                        <td>Ctrl+Shift+J</td>
+                        <td>Cmd+Option+J</td>
+                    </tr>
+                    <tr>
+                        <td>Open Sources</td>
+                        <td>Ctrl+Shift+P</td>
+                        <td>Cmd+Shift+P</td>
+                    </tr>
+                    <tr>
+                        <td>Search in Files</td>
+                        <td>Ctrl+Shift+F</td>
+                        <td>Cmd+Option+F</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>11. Testing Forms in DevTools</h2>
+            <p>Test form elements with focus states:</p>
+
+            <input type="text" placeholder="Text input - click and watch for blue outline">
+            <input type="email" placeholder="Email input - inspect to see focus styles">
+
+            <div class="code-block">
+input[type="text"]:focus {
+    outline: 3px solid #3498db;
+    border-color: #3498db;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>12. Best Practices</h2>
+            <ul>
+                <li><strong>Test on real devices:</strong> Emulation is helpful but not perfect</li>
+                <li><strong>Check all breakpoints:</strong> Test mobile, tablet, and desktop</li>
+                <li><strong>Monitor performance:</strong> Aim for fast load times and smooth interactions</li>
+                <li><strong>Validate HTML/CSS:</strong> Use validators to catch errors</li>
+                <li><strong>Test across browsers:</strong> Use different browsers to ensure compatibility</li>
+                <li><strong>Check accessibility:</strong> Use Lighthouse and accessibility tools</li>
+                <li><strong>Inspect network:</strong> Optimize asset sizes and reduce requests</li>
+                <li><strong>Clear cache:</strong> Disable cache while developing for accurate testing</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+
+    <script>
+        function testConsole() {
+            console.log('%cHello from DevTools!', 'color: #3498db; font-size: 16px; font-weight: bold;');
+            console.log('This is a regular log message');
+            console.warn('This is a warning message');
+            console.error('This is an error message');
+        }
+
+        function testNetwork() {
+            console.log('Network request triggered');
+            alert('Check the Network tab to see the request for this page');
+        }
+
+        function performanceTest() {
+            console.time('Performance Test');
+            let sum = 0;
+            for (let i = 0; i < 100000000; i++) {
+                sum += i;
+            }
+            console.timeEnd('Performance Test');
+            console.log('Computation complete');
+        }
+    </script>
+</body>
+</html>
