@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Columns in Text</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .column-2 {
+            column-count: 2;
+            column-gap: 30px;
+        }
+
+        .column-2 h3 {
+            column-span: all;
+        }
+
+        .column-3 {
+            column-count: 3;
+            column-gap: 25px;
+            column-rule: 2px solid #3498db;
+        }
+
+        .column-3 h3 {
+            column-span: all;
+        }
+
+        .column-4 {
+            column-count: 4;
+            column-gap: 20px;
+            column-rule: 1px dashed #e74c3c;
+        }
+
+        .column-4 h3 {
+            column-span: all;
+        }
+
+        .column-auto {
+            column-width: 250px;
+            column-gap: 30px;
+            column-rule: 2px solid #27ae60;
+        }
+
+        .column-auto h3 {
+            column-span: all;
+        }
+
+        .column-fill {
+            column-count: 2;
+            column-gap: 30px;
+            column-fill: balance;
+            column-rule: 1px solid #f39c12;
+            height: 400px;
+        }
+
+        .column-fill h3 {
+            column-span: all;
+        }
+
+        .newspaper {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 2px solid #34495e;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .newspaper h3 {
+            column-span: all;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .newspaper .byline {
+            column-span: all;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .newspaper p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+        }
+
+        .newspaper p:first-of-type {
+            text-indent: 0;
+        }
+
+        @media (max-width: 768px) {
+            .column-3,
+            .column-4,
+            .newspaper {
+                column-count: 1;
+                column-rule: none;
+            }
+        }
+
+        .code-block {
+            background-color: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .info-box {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS3 Multiple Columns Layout</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>2-Column Layout</h2>
+            <div class="column-2">
+                <h3>Community Events Newsletter</h3>
+                <p>The local community is thriving with numerous events happening throughout the year. From cultural festivals to sporting activities, there's something for everyone. Our community portal brings together residents to celebrate shared interests and build stronger connections.</p>
+                <p>This spring, we're launching several new initiatives including a farmers market every Saturday, outdoor movie nights, and wellness workshops. These events are designed to foster community engagement and create memorable experiences for families.</p>
+                <p>Whether you're interested in arts, sports, education, or social gatherings, our diverse event calendar has something for you. Join us as we make our community a vibrant place to live, work, and play.</p>
+            </div>
+            <div class="code-block">
+.column-2 {
+    column-count: 2;
+    column-gap: 30px;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>3-Column Layout with Column Rule</h2>
+            <div class="column-3">
+                <h3>Event Planning Guide</h3>
+                <p>Planning a community event requires careful coordination and attention to detail. First, identify your event's purpose and target audience. Are you organizing a festival, workshop, sports event, or social gathering? Each type requires different planning strategies.</p>
+                <p>Next, establish a budget and timeline. Determine how many volunteers you'll need, what equipment is required, and how you'll promote your event. Marketing your event early through social media, email, and local channels helps ensure good attendance.</p>
+                <p>Finally, prepare contingency plans for weather, logistics, and unexpected challenges. Have backup indoor locations, clear parking arrangements, and first aid stations. Post-event evaluation helps improve future events and builds a stronger community.</p>
+                <p>Remember to gather feedback from attendees and thank your volunteers. Their input is invaluable for creating better experiences next time.</p>
+            </div>
+            <div class="code-block">
+.column-3 {
+    column-count: 3;
+    column-gap: 25px;
+    column-rule: 2px solid #3498db;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>4-Column Layout with Dashed Rule</h2>
+            <div class="column-4">
+                <h3>Community Services Directory</h3>
+                <p>Our community offers a wide range of services to residents. Parks and Recreation manages outdoor spaces, sports facilities, and recreational programs. The Community Center provides meeting spaces, classes, and cultural events.</p>
+                <p>Social Services offers assistance with housing, food security, and financial support. Public Safety includes police, fire, and emergency medical services available 24/7. Education services provide schools, libraries, and lifelong learning programs.</p>
+                <p>Health Services include medical clinics, mental health support, and wellness programs. Business Services help entrepreneurs start and grow their businesses. Environmental Services maintain parks, manage waste, and promote sustainability.</p>
+                <p>Arts and Culture programs celebrate diversity through music, theater, visual arts, and cultural festivals. Youth Services provide after-school programs, mentoring, and leadership development. Senior Services offer programs, healthcare, and social activities for older adults.</p>
+            </div>
+            <div class="code-block">
+.column-4 {
+    column-count: 4;
+    column-gap: 20px;
+    column-rule: 1px dashed #e74c3c;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>Responsive Column Width</h2>
+            <div class="column-auto">
+                <h3>About Our Community</h3>
+                <p>Our vibrant community is home to over 100,000 residents from diverse backgrounds and cultures. We celebrate our differences while working together to create a better place for everyone.</p>
+                <p>The community was founded over a century ago and has grown from a small village to a thriving metropolitan area. Throughout our history, we've maintained a commitment to quality of life, good governance, and community engagement.</p>
+                <p>Today, we're focused on sustainable development, economic opportunity, public health, and social equity. We invest in education, infrastructure, public safety, and environmental protection.</p>
+                <p>Join us in building a community where everyone can thrive, contribute, and feel valued. There are many ways to get involved: volunteer with local organizations, attend community meetings, support local businesses, or participate in community events.</p>
+            </div>
+            <div class="code-block">
+.column-auto {
+    column-width: 250px;
+    column-gap: 30px;
+    column-rule: 2px solid #27ae60;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>Balanced Column Fill</h2>
+            <div class="column-fill">
+                <h3>Quick Facts</h3>
+                <p>Population: 100,000+</p>
+                <p>Founded: 1923</p>
+                <p>Area: 50 square miles</p>
+                <p>Parks: 25 major parks</p>
+                <p>Schools: 45 public schools</p>
+                <p>Libraries: 8 branches</p>
+                <p>Community Centers: 6 facilities</p>
+                <p>Annual Events: 50+</p>
+                <p>Volunteers: 5,000+</p>
+                <p>Businesses: 3,500+</p>
+            </div>
+            <div class="code-block">
+.column-fill {
+    column-count: 2;
+    column-fill: balance;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>Newspaper-Style Layout</h2>
+            <div class="newspaper">
+                <h3>Community Portal Launches New Features</h3>
+                <p class="byline">By Staff Writer | June 2, 2024</p>
+                <p>Local residents now have access to an enhanced community portal with new features designed to improve civic engagement and access to services. The redesigned platform offers streamlined navigation, better mobile support, and integrated messaging between residents and city services.</p>
+                <p>The new portal includes a comprehensive event calendar featuring hundreds of community activities, from cultural festivals to educational workshops. Residents can easily filter events by category, date, and location to find activities that match their interests.</p>
+                <p>A key addition is the service request system, which allows residents to report issues like potholes, broken streetlights, or downed trees directly through the portal. Residents can track their requests in real-time and receive notifications when repairs are completed.</p>
+                <p>The community forum section enables residents to discuss local issues, share recommendations, and organize neighborhood activities. City officials monitor these discussions to better understand community concerns and priorities.</p>
+                <p>Mobile optimization was a priority in the redesign, recognizing that many residents access city services on smartphones and tablets. The responsive design ensures a seamless experience across all devices and screen sizes.</p>
+                <p>The portal also features improved accessibility for residents with disabilities, including screen reader compatibility and high-contrast display options. Users can customize their experience with saved preferences and personalized dashboards.</p>
+            </div>
+            <div class="code-block">
+.newspaper {
+    column-count: 2;
+    column-gap: 40px;
+    column-rule: 2px solid #34495e;
+}
+            </div>
+        </section>
+
+        <section>
+            <h2>Column Properties Reference</h2>
+            <div class="info-box">
+                <p><strong>column-count:</strong> Specifies the number of columns (2, 3, 4, etc.)</p>
+                <p><strong>column-gap:</strong> Space between columns (in pixels)</p>
+                <p><strong>column-rule:</strong> Line between columns (like border-style border-width border-color)</p>
+                <p><strong>column-width:</strong> Target width for each column</p>
+                <p><strong>column-fill:</strong> How to balance content (balance or auto)</p>
+                <p><strong>column-span:</strong> Make element span all columns (all or none)</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
