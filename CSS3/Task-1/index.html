@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Inclusion Methods</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: red;">CSS Inclusion Methods Demo</h1>
+    </header>
+
+    <nav>
+        <a href="#inline">Inline</a>
+        <a href="#internal">Internal</a>
+        <a href="#external">External</a>
+    </nav>
+
+    <main>
+        <section id="inline">
+            <h2>Inline CSS</h2>
+            <p>This heading has an inline style applied directly: <span style="color: red; font-weight: bold;">style="color: red;"</span></p>
+            <p>Inline styles are applied directly to individual elements using the style attribute. They have the highest specificity but are not reusable.</p>
+        </section>
+
+        <section id="internal">
+            <h2>Internal CSS (Embedded in &lt;style&gt;)</h2>
+            <p>This section is styled using the &lt;style&gt; tag in the &lt;head&gt; section. The background color and fonts are defined there.</p>
+            <p>Internal stylesheets are useful for single-page applications but not ideal for multi-page websites.</p>
+        </section>
+
+        <section id="external">
+            <h2>External CSS (Linked File)</h2>
+            <p>This section and all sections above use an external stylesheet <span style="font-family: monospace;">styles.css</span></p>
+            <p>External stylesheets are the best practice for most projects. They are reusable across multiple pages, cacheable by browsers, and keep HTML clean.</p>
+            <p><strong>Advantage:</strong> One CSS file for the entire website!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
