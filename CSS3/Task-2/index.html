@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Syntax and Comments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CSS Syntax and Comments</h1>
+        <p>Clean, well-commented stylesheet for maintainability</p>
+    </header>
+
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#syntax">Syntax</a>
+        <a href="#comments">Comments</a>
+        <a href="#structure">Structure</a>
+    </nav>
+
+    <main>
+        <section id="overview">
+            <h2>Understanding CSS Structure</h2>
+            <p>A well-organized stylesheet is easier to maintain and modify. Each section should have clear comments explaining its purpose.</p>
+            <h3>Key Principles:</h3>
+            <p>1. Group related styles together</p>
+            <p>2. Use descriptive section comments</p>
+            <p>3. Maintain consistent indentation</p>
+            <p>4. Use meaningful class and ID names</p>
+        </section>
+
+        <section id="syntax">
+            <h2>CSS Syntax Rules</h2>
+            <p>Every CSS rule consists of a selector and a declaration block:</p>
+            <div class="code-block">
+selector {
+    property: value;
+    property: value;
+}
+            </div>
+            <h3>Example:</h3>
+            <div class="code-block">
+/* This is a comment - it spans multiple lines
+   and helps explain the purpose of the styles */
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+            </div>
+        </section>
+
+        <section id="comments">
+            <h2>Writing Effective Comments</h2>
+            <p>Comments in CSS start with /* and end with */. Use them to:</p>
+            <p>1. Label major sections with section headers</p>
+            <p>2. Explain complex selectors or rules</p>
+            <p>3. Mark TODO items for future updates</p>
+            <p>4. Group related properties</p>
+            <div class="code-block">
+/* ==========================================
+   NAVIGATION STYLES
+   ========================================== */
+
+nav {
+    background-color: #34495e;
+    padding: 15px;
+}
+
+/* Style for main CTA button - Update colors quarterly */
+.cta-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 5px;
+}
+            </div>
+        </section>
+
+        <section id="structure">
+            <h2>Organizing Your Stylesheet</h2>
+            <p>Follow this structure for larger projects:</p>
+            <p>1. Reset/Normalize styles</p>
+            <p>2. Global/Base styles</p>
+            <p>3. Typography styles</p>
+            <p>4. Layout/Component styles</p>
+            <p>5. Page-specific styles</p>
+            <p>6. Utility classes</p>
+            <p>7. Media queries</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
