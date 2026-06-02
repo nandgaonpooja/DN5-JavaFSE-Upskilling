@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Styling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            margin: 15px 0;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #3498db;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:hover {
+            background-color: #fff9e6;
+            cursor: pointer;
+        }
+
+        .table-basic {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-basic th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #1a252f;
+        }
+
+        .table-basic td {
+            padding: 12px 15px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .table-basic thead {
+            background-color: #2c3e50;
+        }
+
+        .table-striped tbody tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        .table-striped th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #fff9e6;
+            box-shadow: inset 0 0 0 2px #3498db;
+        }
+
+        .table-bordered {
+            border: 2px solid #3498db;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #3498db;
+        }
+
+        .table-bordered th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .table-compact th,
+        .table-compact td {
+            padding: 8px 10px;
+            font-size: 0.9em;
+        }
+
+        .table-modern {
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .table-modern th {
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        .table-modern tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Table Styling</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Basic Table with Border Collapse</h2>
+            <p>A clean table with borders collapsed into a single line between cells.</p>
+            <table class="table-basic">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring Festival</td>
+                        <td>March 15, 2024</td>
+                        <td>Central Park</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td>Summer Concert</td>
+                        <td>July 20, 2024</td>
+                        <td>Amphitheater</td>
+                        <td>Upcoming</td>
+                    </tr>
+                    <tr>
+                        <td>Art Exhibition</td>
+                        <td>May 10, 2024</td>
+                        <td>Community Center</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop</td>
+                        <td>April 5, 2024</td>
+                        <td>Library</td>
+                        <td>Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Zebra Striping (Alternating Row Colors)</h2>
+            <p>Using nth-child(even) and nth-child(odd) for alternating row colors improves readability.</p>
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Attendees</th>
+                        <th>Revenue</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring Festival</td>
+                        <td>1,250</td>
+                        <td>$18,750</td>
+                        <td>4.8/5</td>
+                    </tr>
+                    <tr>
+                        <td>Summer Concert</td>
+                        <td>2,100</td>
+                        <td>$52,500</td>
+                        <td>4.9/5</td>
+                    </tr>
+                    <tr>
+                        <td>Art Exhibition</td>
+                        <td>850</td>
+                        <td>$10,200</td>
+                        <td>4.6/5</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop</td>
+                        <td>120</td>
+                        <td>$1,200</td>
+                        <td>4.7/5</td>
+                    </tr>
+                    <tr>
+                        <td>Sports Day</td>
+                        <td>3,500</td>
+                        <td>$35,000</td>
+                        <td>4.8/5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Hover Effect</h2>
+            <p>Rows highlight on hover for interactive feedback.</p>
+            <table class="table-hover">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Events Held</th>
+                        <th>Participants</th>
+                        <th>Next Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Festival</td>
+                        <td>12</td>
+                        <td>15,000+</td>
+                        <td>Q1 2025</td>
+                    </tr>
+                    <tr>
+                        <td>Concert</td>
+                        <td>8</td>
+                        <td>8,500</td>
+                        <td>Q2 2025</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop</td>
+                        <td>24</td>
+                        <td>2,000</td>
+                        <td>Monthly</td>
+                    </tr>
+                    <tr>
+                        <td>Sports</td>
+                        <td>6</td>
+                        <td>5,000</td>
+                        <td>Q3 2025</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Bordered Table</h2>
+            <p>All cells have visible borders for structured appearance.</p>
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                        <th>Time Slot</th>
+                        <th>Monday</th>
+                        <th>Wednesday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"><strong>9:00 AM</strong></td>
+                        <td>Yoga Class</td>
+                        <td>Yoga Class</td>
+                        <td>Yoga Class</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><strong>11:00 AM</strong></td>
+                        <td>Tai Chi</td>
+                        <td>Tai Chi</td>
+                        <td>Tai Chi</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><strong>2:00 PM</strong></td>
+                        <td>Zumba Dance</td>
+                        <td>Zumba Dance</td>
+                        <td>Zumba Dance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Compact Table</h2>
+            <p>Reduced padding for a compact, information-dense layout.</p>
+            <table class="table-compact">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Spring Festival</td>
+                        <td>03/15/24</td>
+                        <td>Done</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Concert</td>
+                        <td>07/20/24</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Workshop</td>
+                        <td>04/05/24</td>
+                        <td>Done</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Modern Table with Gradient Header</h2>
+            <p>Modern styling with gradient header and rounded corners.</p>
+            <table class="table-modern">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Event</th>
+                        <th>Popularity</th>
+                        <th>Satisfaction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td>Summer Concert</td>
+                        <td class="text-center">⭐⭐⭐⭐⭐</td>
+                        <td class="text-center">98%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td>Spring Festival</td>
+                        <td class="text-center">⭐⭐⭐⭐⭐</td>
+                        <td class="text-center">96%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td>Art Exhibition</td>
+                        <td class="text-center">⭐⭐⭐⭐</td>
+                        <td class="text-center">92%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Text Alignment in Tables</h2>
+            <p>Demonstrate text-align property in table cells.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-left">Left Aligned</th>
+                        <th class="text-center">Center Aligned</th>
+                        <th class="text-right">Right Aligned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-left">Event Name</td>
+                        <td class="text-center">2024</td>
+                        <td class="text-right">$9,999.99</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">Community Service</td>
+                        <td class="text-center">Annual</td>
+                        <td class="text-right">$5,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Table Best Practices</h2>
+            <ul>
+                <li>Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> for semantic structure</li>
+                <li>Apply border-collapse: collapse to remove spacing</li>
+                <li>Use nth-child selectors for zebra striping</li>
+                <li>Add hover effects for interactive feedback</li>
+                <li>Use text-align to position content properly</li>
+                <li>Keep adequate padding for readability</li>
+                <li>Use contrasting colors for headers</li>
+                <li>Make tables responsive with media queries or overflow</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal</p>
+    </footer>
+</body>
+</html>
