@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 6: Arrays</title></head>
+<body>
+    <h2>Task 6: Array Methods</h2>
+    <script>
+        let events = [{name: "Tech", type: "tech"}, {name: "Rock Concert", type: "music"}];
+        
+        // Push
+        events.push({name: "Jazz Night", type: "music"});
+
+        // Filter
+        let musicEvents = events.filter(e => e.type === "music");
+        
+        // Map
+        let displayCards = musicEvents.map(e => `Event Card: ${e.name}`);
+        
+        console.log(displayCards);
+    </script>
+</body>
+</html>

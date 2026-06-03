@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 7: DOM</title>
+    <style>.card { border: 1px solid #000; padding: 10px; margin: 5px; }</style>
+</head>
+<body>
+    <h2>Task 7: DOM Manipulation</h2>
+    <div id="container"></div>
+    <button onclick="addEvent()">Add Event dynamically</button>
+    
+    <script>
+        function addEvent() {
+            // querySelector
+            const container = document.querySelector("#container");
+            // createElement
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerText = "Newly Registered Event";
+            // appendChild
+            container.appendChild(card);
+        }
+    </script>
+</body>
+</html>

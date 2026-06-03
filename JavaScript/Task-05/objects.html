@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 5: Objects</title></head>
+<body>
+    <h2>Task 5: Classes and Objects</h2>
+    <script>
+        class Event {
+            constructor(name, seats) {
+                this.name = name;
+                this.seats = seats;
+            }
+            // Prototype method
+            checkAvailability() {
+                return this.seats > 0;
+            }
+        }
+
+        const myEvent = new Event("Baking Workshop", 5);
+        console.log("Available? ", myEvent.checkAvailability());
+
+        // Object.entries
+        for (const [key, value] of Object.entries(myEvent)) {
+            console.log(`${key}: ${value}`);
+        }
+    </script>
+</body>
+</html>

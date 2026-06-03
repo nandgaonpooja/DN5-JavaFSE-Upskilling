@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 10: ES6 Features</title></head>
+<body>
+    <h2>Task 10: ES6+ Refactoring</h2>
+    <script>
+        // Default parameters
+        const initializeEvent = (name = "Community Event") => {
+            console.log("Initialized: " + name);
+        };
+        initializeEvent();
+
+        const eventData = { title: "Art Fair", date: "2026-10-12", location: "Park" };
+        
+        // Destructuring
+        const { title, location } = eventData;
+        console.log(`Destructured: ${title} at ${location}`);
+
+        // Spread Operator
+        const existingEvents = ["Music Fest"];
+        const clonedEvents = [...existingEvents, "Tech Meetup", title];
+        console.log("Cloned list:", clonedEvents);
+    </script>
+</body>
+</html>

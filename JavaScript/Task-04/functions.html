@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 4: Functions</title></head>
+<body>
+    <h2>Task 4: Functions and Closures</h2>
+    <script>
+        // Closure to track registrations
+        function createCategoryTracker(category) {
+            let total = 0;
+            return function registerUser() {
+                total++;
+                console.log(`${category} registrations: ${total}`);
+            }
+        }
+        const registerMusic = createCategoryTracker("Music");
+        registerMusic(); // 1
+        registerMusic(); // 2
+
+        // Callback function
+        function filterEventsByCategory(events, callback) {
+            return events.filter(callback);
+        }
+        
+        const allEvents = [{name: "A", cat: "Music"}, {name: "B", cat: "Tech"}];
+        const musicEvents = filterEventsByCategory(allEvents, (e) => e.cat === "Music");
+        console.log("Filtered:", musicEvents);
+    </script>
+</body>
+</html>

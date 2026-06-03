@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 14: jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>.event-card { width: 200px; height: 100px; background: lightblue; padding: 10px; margin: 10px; }</style>
+</head>
+<body>
+    <h2>Task 14: jQuery</h2>
+    <button id="registerBtn">Register (Fade Out)</button>
+    <button id="showBtn">Undo (Fade In)</button>
+    
+    <div class="event-card">Event Card</div>
+
+    <div style="margin-top:20px; border-top: 1px solid black; padding-top:10px;">
+        <strong>Benefit of moving to React/Vue:</strong><br>
+        Frameworks like React and Vue utilize a Virtual DOM, which makes UI updates significantly faster and allows for component-based, reusable architecture instead of manually querying DOM elements like in jQuery.
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#registerBtn').click(function(){
+                $('.event-card').fadeOut();
+            });
+            $('#showBtn').click(function(){
+                $('.event-card').fadeIn();
+            });
+        });
+    </script>
+</body>
+</html>

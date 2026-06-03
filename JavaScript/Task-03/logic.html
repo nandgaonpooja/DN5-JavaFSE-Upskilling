@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 3: Logic</title></head>
+<body>
+    <h2>Task 3: Conditionals and Loops</h2>
+    <ul id="eventList"></ul>
+    <script>
+        const events = [
+            { name: "Tech Meetup", seats: 10, status: "upcoming" },
+            { name: "Past Concert", seats: 0, status: "past" },
+            { name: "Art Expo", seats: 0, status: "upcoming" }
+        ];
+
+        events.forEach(ev => {
+            // Hide past or full events
+            if(ev.status === "upcoming" && ev.seats > 0) {
+                document.getElementById('eventList').innerHTML += `<li>${ev.name}</li>`;
+            }
+        });
+
+        // Error Handling
+        try {
+            let userAge = 16;
+            if(userAge < 18) throw new Error("Must be 18 to register.");
+        } catch(err) {
+            console.error("Registration Error: " + err.message);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 11: Forms</title></head>
+<body>
+    <h2>Task 11: Form Validation</h2>
+    <form id="regForm">
+        <input type="text" name="fullName" placeholder="Name"><br><br>
+        <input type="email" name="email" placeholder="Email"><br><br>
+        <span id="err" style="color:red;"></span><br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            const name = this.elements['fullName'].value;
+            const email = this.elements['email'].value;
+            
+            if(!name || !email) {
+                document.getElementById('err').innerText = "All fields are required!";
+            } else {
+                document.getElementById('err').style.color = "green";
+                document.getElementById('err').innerText = "Success!";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Task 8: Events</title></head>
+<body>
+    <h2>Task 8: Event Listeners</h2>
+    
+    <input type="text" id="search" placeholder="Search event..." onkeydown="searchEvent(event)">
+    
+    <select onchange="filterCat(this.value)">
+        <option value="all">All</option>
+        <option value="music">Music</option>
+    </select>
+
+    <button id="regBtn" onclick="register()">Register!</button>
+
+    <script>
+        function register() { alert("Registered!"); }
+        function filterCat(val) { console.log("Filtering by: " + val); }
+        function searchEvent(e) { console.log("Key pressed: " + e.key); }
+    </script>
+</body>
+</html>
